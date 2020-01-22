@@ -1,0 +1,57 @@
+<html>
+<head>
+    <title>Practice CSS animations</title>
+    <style>
+        .main {
+            width: 100vw;
+            height: 100vh;
+            background: lightgray;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #square {
+            width: 100px;
+            height: 100px;
+            border: 1px solid #000;
+            background-color: #45091d; 
+            position: absolute;
+            top: 0;
+        }
+
+        @keyframes transformShape {
+            0% { border-radius: 0; background-color: #45091d; top: 0; transform:scale(1);}
+            50% { border-radius: 50px; background-color: #790000; top: 100px; transform:scale(1.5);}
+            100% { border-radius: 50px; background-color: #bd6b86; top: 300px; transform:scale(3);}
+        }
+
+        .animate {
+            animation-name: transformShape;
+            animation-duration: 5s;
+            animation-timing-function: linear;
+            animation-delay: 2s;
+            animation-iteration-count: infinite;
+            animation-direction: backwards;
+        }
+    </style>
+</head>
+<body>
+    <div class="main">
+        <div id="square"></div>
+    </div>
+
+    <script>
+        document.getElementById('square').addEventListener('click', (el) => {
+            if (el.target.classList.contains('animate') && el.target.style.animationPlayState == 'running') {
+                console.log('thing');
+                
+                el.target.style.animationPlayState = 'paused';
+            } else {
+                el.target.style.animationPlayState = 'running';
+            }
+            el.target.classList.add('animate');           
+            
+        }, false)
+    </script>
+</body>
+</html>
